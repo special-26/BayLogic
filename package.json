@@ -1,0 +1,21 @@
+{
+  "name": "workshop-management",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/icon": "^2.2.1",
+    "@nuxtjs/supabase": "^2.0.3",
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "nuxt": "^4.3.1",
+    "reka-ui": "^2.8.0",
+    "vue": "^3.5.28",
+    "vue-router": "^4.6.4"
+  }
+}
