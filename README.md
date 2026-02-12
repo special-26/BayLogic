@@ -72,4 +72,7 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Paint Bay: bayCode: 'P-7', bayName: 'PAINT BAY'
+Denting Bay: bayCode: 'D-3', bayName: 'DENTING BAY'
+Tyre Bay: bayCode: 'T-2', bayName: 'TYRE BAY'
+Washing Bay: bayCode: 'W-1', bayName: 'WASHING BAY'
