@@ -1,36 +1,53 @@
 <template>
   <div>
-    <!-- Navigation Bar -->
-    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-5 flex gap-5 justify-center items-center shadow-lg">
-      <button @click="currentView = 'service'"
-        :class="['px-6 py-3 rounded-lg border-none font-bold cursor-pointer flex items-center gap-2 text-base transition-all',
-          currentView === 'service' ? 'bg-white text-indigo-600' : 'bg-white/20 text-white hover:bg-white/30']">
-        <Icon name="flowbite:users-outline" size="25" />
-        Service Advisor
-      </button>
-      <button @click="currentView = 'bay'"
-      :class="['px-6 py-3 rounded-lg border-none font-bold cursor-pointer flex items-center gap-2 text-base transition-all',
-          currentView === 'bay' ? 'bg-white text-indigo-600' : 'bg-white/20 text-white hover:bg-white/30']">
-        <Icon name="pepicons-pencil:monitor" size="25" />
-        Bay Worker
-      </button>
-      <button @click="currentView = 'supervisor'"
-        :class="['px-6 py-3 rounded-lg border-none font-bold cursor-pointer flex items-center gap-2 text-base transition-all',
-          currentView === 'supervisor' ? 'bg-white text-indigo-600' : 'bg-white/20 text-white hover:bg-white/30']">
-        <Icon name="carbon:dashboard" size="25" />
-        Supervisor
-      </button>
+    <LoadingScreen :isLoading="appLoading" />
+
+    <!-- Main Content (only visible when not loading) -->
+    <div v-if="!appLoading" class="w-full h-screen">
+      <section class="bg-[url('/assets/hero-gradient-bg.png')] bg-cover bg-center bg-no-repeat px-4 md:px-16 lg:px-24 xl:px-32">
+            <div class="max-w-7xl mx-auto flex flex-col items-center justify-center h-screen">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-32 h-32" viewBox="0 0 32 32"><path fill="currentColor" d="M9 16c0 .337.024.675.071 1.006l-1.98.283A9 9 0 0 1 7 16c0-4.963 4.038-9 9-9c2.043 0 4.044.704 5.635 1.981l-1.253 1.56A6.92 6.92 0 0 0 16 9c-3.86 0-7 3.14-7 7m-1 4a1 1 0 1 0 2 0a1 1 0 0 0-2 0m8-16c6.617 0 12 5.383 12 12h2c0-7.72-6.28-14-14-14c-1.643 0-3.253.282-4.785.839l.684 1.88A12 12 0 0 1 16 4m6 8a1 1 0 1 0 2 0a1 1 0 0 0-2 0M9 6a1 1 0 1 0 0-2a1 1 0 0 0 0 2M4 16c0-3.205 1.248-6.219 3.515-8.485L6.1 6.1A13.9 13.9 0 0 0 2 16c0 7.72 6.28 14 14 14v-2C9.383 28 4 22.617 4 16m24.5 9.5c0 1.654-1.346 3-3 3s-3-1.346-3-3c0-.462.114-.894.3-1.285l-5.515-5.516c-.39.187-.823.301-1.285.301c-1.654 0-3-1.346-3-3s1.346-3 3-3s3 1.346 3 3c0 .462-.113.894-.3 1.285l5.515 5.516c.39-.187.823-.301 1.285-.301c1.654 0 3 1.346 3 3M16 17c.551 0 1-.449 1-1s-.449-1-1-1s-1 .449-1 1s.449 1 1 1m10.5 8.5a1 1 0 1 0-2.001.001A1 1 0 0 0 26.5 25.5"/></svg>
+                <div class="text-center">
+                  <h1 class="text-center font-urbanist text-[8em] font-bold ">
+                      BayLogic
+                  </h1>
+                </div>
+                <div>
+                  <p class="text-center text-xl text-zinc-500 max-w-lg uppercase">
+                      Intelligent Workshop Automation
+                  </p>
+                  <div class="text-lg text-center mt-8 underline">- By Hitek Automobiles</div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-4 mt-6 w-full md:w-auto">
+                    <NuxtLink to="/supervisor" class="relative py-3 md:py-2.5 w-full md:w-auto px-8 bg-white/50 text-gray-600 font-medium text-center border border-white rounded-full hover:scale-125 hover:bg-white transition delay-700 duration-300 ease-in-out">
+                        Let's Dive
+                        <div direction="horizontal" class="absolute size-8 pointer-events-none right-0 top-full -translate-y-1/2">
+                            <img
+                                src="/assets/mouse-arrow.svg"
+                                alt="mouse-arrow"
+                                width={24}
+                                height={24}
+                            />
+                        </div>
+                    </NuxtLink>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- Content -->
-    <ServiceAdvisor v-if="currentView === 'service'" />
-    <BayWorker v-if="currentView === 'bay'" />
-    <SupervisorDashboard v-if="currentView === 'supervisor'" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-const currentView = ref('service')
+const appLoading = ref(true);
+
+onMounted(() => {
+  // Simulate an asynchronous operation, like fetching data or waiting for page load
+  setTimeout(() => {
+    appLoading.value = false;
+  }, 3000); // Hide loading screen after 2 seconds (adjust as needed)
+});
+
 </script>
